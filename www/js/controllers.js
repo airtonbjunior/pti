@@ -4,7 +4,7 @@ angular.module('starter.controllers', [])
 
   $scope.getBusHours = function () {
 
-    $http.get("http://pdi.pti.org.br/onibus/horarios")
+    $http.get("http://pdi.pti.org.br/onibus/horarios?local=pti")
       .success(function(data) {
         console.log(data);
         
