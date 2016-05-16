@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.pti494018" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>pti</name>
+  <name>PTI</name>
   <description>
-        An Ionic Framework and Cordova project.
+        Compilado de serviços úteis para os habitantes do PTI.
     </description>
-  <author email="you@example.com" href="http://example.com.com/">
-      Your Name Here
+  <author email="airtonbjunior@gmail.com" href="http://airtonbjunior.com.br/">
+      Airton Bordin Junior
     </author>
   <content src="index.html"/>
   <access origin="*"/>
