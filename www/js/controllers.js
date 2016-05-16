@@ -2,17 +2,63 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, $http) {
 
-  $scope.getBusHours = function () {
+  
+  $scope.dataHours = {};
+  $scope.buttonWhere = "all";
+  $scope.buttonWhen  = "all";
 
-    $http.get("http://pdi.pti.org.br/onibus/horarios?local=pti")
+  /* 
+    Parameters: 
+      where [all | pti    | barreira] 
+      when  [all | normal | sabado  ] 
+  */
+  $scope.getBusHours = function (where, when) {
+
+    
+    $http.get("http://pdi.pti.org.br/onibus/horarios?local=" + $scope.buttonWhere + "&tipo=" + $scope.buttonWhen)
       .success(function(data) {
-        console.log(data);
+        $scope.dataHours = data.baseOnibus.horarios;
         
       })
       .error(function(data){
-        alert("deu erro");
+        alert("Erro na busca dos dados. Por favor, tente novamente!");
       })
   }
+
+
+  
+  /* I don't know if I need this. */
+  $scope.button         = {};
+    $scope.button.first   = {};
+    $scope.button.first2  = {};
+    $scope.button.second  = {};
+    $scope.button.second2 = {};
+    $scope.button.third   = {};
+    $scope.button.third2  = {};
+
+  /* Handle the clicked button (visual only) */
+  $scope.click = function(button, buttonsClass, paramCall){
+
+    if(buttonsClass == '1') {
+
+      $scope.buttonWhere = button;
+
+      $scope.button.first.clicked   = false;
+      $scope.button.second.clicked  = false;
+      $scope.button.third.clicked   = false;  
+
+      $scope.buttonWhere = paramCall;
+    }
+    else {
+      $scope.button.first2.clicked  = false;
+      $scope.button.second2.clicked = false;
+      $scope.button.third2.clicked  = false;
+
+      $scope.buttonWhen = paramCall;
+    }
+
+    button.clicked = true;
+  };
 
 })
 
