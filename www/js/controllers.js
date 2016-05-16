@@ -59,6 +59,7 @@ angular.module('starter.controllers', [])
 
 /* --------------------- */
 /* Telephones Controller */
+/* --------------------- */
 .controller('TelephonesCtrl', function($scope, $http) {
 
   $scope.dataTelephones = {};
@@ -110,6 +111,26 @@ angular.module('starter.controllers', [])
       button.clicked = true;
   };
 
+})
+
+
+/* -------------- */
+/* Menu Controller*/
+/* -------------- */
+.controller('MenuCrtl', function($scope, $http) {
+
+  $scope.getMenu = function (param) {
+
+    $http.get("http://pdi.pti.org.br/restaurantes/cardapios.json?dataInicial=03/06/2013&dataFinal=06/06/2013&restaurante=prestivel")
+      .success(function(data) {
+        $scope.dataMenu = data;
+        console.log(data[0]);
+
+      })
+      .error(function(data){
+        alert("Erro na busca dos dados. Por favor, tente novamente!");
+      })
+  }
 })
 
 
