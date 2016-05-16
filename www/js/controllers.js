@@ -119,18 +119,60 @@ angular.module('starter.controllers', [])
 /* -------------- */
 .controller('MenuCrtl', function($scope, $http) {
 
+  $scope.restaurant = "all";
+  $scope.beginDate = '10/05/2016'
+  $scope.endDate = '11/05/2016';
+
+  $scope.dataRestaurants = [];
+  $scope.resultRestaurants;
+
   $scope.getMenu = function (param) {
 
-    $http.get("http://pdi.pti.org.br/restaurantes/cardapios.json?dataInicial=03/06/2013&dataFinal=06/06/2013&restaurante=prestivel")
+    $http.get("http://pdi.pti.org.br/restaurantes/cardapios.json?dataInicial=" + $scope.beginDate + "&dataFinal=" + $scope.endDate + "&restaurante=" + $scope.restaurant)
       .success(function(data) {
         $scope.dataMenu = data;
-        console.log(data[0]);
+
+        
+
+        if ($scope.restaurant == 'all') {
+          for (i=0; i<data.length; i++) {
+            $scope.dataRestaurants[i] = data[i];
+          }
+        }
+        else {
+          $scope.dataRestaurants[0] = data[0];
+        }
 
       })
       .error(function(data){
         alert("Erro na busca dos dados. Por favor, tente novamente!");
       })
   }
+
+  /* I don't know if I need this. */
+  $scope.button         = {};
+    $scope.button.first   = {}; $scope.button.first.clicked  = true;
+    $scope.button.second  = {};
+    $scope.button.third   = {};
+    $scope.button.fourth  = {};
+
+  /* Handle the clicked button (visual only) */
+  $scope.click = function(button, paramCall){
+
+      console.log(paramCall);
+
+      $scope.button.first.clicked   = false; 
+      $scope.button.second.clicked  = false;
+      $scope.button.third.clicked   = false;
+      $scope.button.fourth.clicked  = false;  
+
+      $scope.restaurant = paramCall;
+
+      button.clicked = true;
+  };
+
+
+
 })
 
 
