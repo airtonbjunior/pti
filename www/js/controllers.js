@@ -24,8 +24,8 @@ angular.module('starter.controllers', [])
   
   /* I don't know if I need this. */
   $scope.button         = {};
-    $scope.button.first   = {};
-    $scope.button.first2  = {};
+    $scope.button.first   = {}; $scope.button.first.clicked  = true;
+    $scope.button.first2  = {}; $scope.button.first2.clicked = true;
     $scope.button.second  = {};
     $scope.button.second2 = {};
     $scope.button.third   = {};
@@ -92,7 +92,7 @@ angular.module('starter.controllers', [])
 
     /* I don't know if I need this. */
   $scope.button         = {};
-    $scope.button.first   = {};
+    $scope.button.first   = {}; $scope.button.first.clicked  = true;
     $scope.button.second  = {};
     $scope.button.third   = {};
 
@@ -101,7 +101,7 @@ angular.module('starter.controllers', [])
 
       console.log(paramCall);
 
-      $scope.button.first.clicked   = false;
+      $scope.button.first.clicked   = false; 
       $scope.button.second.clicked  = false;
       $scope.button.third.clicked   = false;  
 
