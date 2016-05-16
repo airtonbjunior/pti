@@ -123,10 +123,15 @@ angular.module('starter.controllers', [])
   $scope.beginDate = '10/05/2016'
   $scope.endDate = '11/05/2016';
 
+
+
   $scope.dataRestaurants = [];
   $scope.resultRestaurants;
 
   $scope.getMenu = function (param) {
+
+    console.log($scope.beginDate);
+
 
     $http.get("http://pdi.pti.org.br/restaurantes/cardapios.json?dataInicial=" + $scope.beginDate + "&dataFinal=" + $scope.endDate + "&restaurante=" + $scope.restaurant)
       .success(function(data) {
