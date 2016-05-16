@@ -7,13 +7,8 @@ angular.module('starter.controllers', [])
   $scope.buttonWhere = "all";
   $scope.buttonWhen  = "all";
 
-  /* 
-    Parameters: 
-      where [all | pti    | barreira] 
-      when  [all | normal | sabado  ] 
-  */
-  $scope.getBusHours = function (where, when) {
 
+  $scope.getBusHours = function () {
     
     $http.get("http://pdi.pti.org.br/onibus/horarios?local=" + $scope.buttonWhere + "&tipo=" + $scope.buttonWhen)
       .success(function(data) {
@@ -61,6 +56,60 @@ angular.module('starter.controllers', [])
   };
 
 })
+
+/* --------------------- */
+/* Telephones Controller */
+.controller('TelephonesCtrl', function($scope, $http) {
+
+  $scope.dataTelephones = {};
+  $scope.searchType = "nome";
+  $scope.who     = "all";
+  $scope.func    = "all";
+  $scope.company = "all";
+
+
+  $scope.getTelephones = function (param) {
+
+    console.log(param);
+    console.log($scope.searchType);
+
+    if($scope.searchType == "nome") { $scope.who = param; } else if ($scope.searchType == "empresa") { $scope.company = param; } else { $scope.func = param;}
+
+    console.log("http://pdi.pti.org.br/habitantes/telefones?nome=" + $scope.who + "&funcao=" + $scope.func + "&empresa=" + $scope.company);
+
+    $http.get("http://pdi.pti.org.br/habitantes/telefones?nome=" + $scope.who + "&funcao=" + $scope.func + "&empresa=" + $scope.company)
+      .success(function(data) {
+        $scope.dataTelephones = data.pessoaList;
+        console.log(data.pessoaList);
+        
+      })
+      .error(function(data){
+        alert("Erro na busca dos dados. Por favor, tente novamente!");
+      })
+  }
+
+    /* I don't know if I need this. */
+  $scope.button         = {};
+    $scope.button.first   = {};
+    $scope.button.second  = {};
+    $scope.button.third   = {};
+
+  /* Handle the clicked button (visual only) */
+  $scope.click = function(button, paramCall){
+
+      console.log(paramCall);
+
+      $scope.button.first.clicked   = false;
+      $scope.button.second.clicked  = false;
+      $scope.button.third.clicked   = false;  
+
+      $scope.searchType = paramCall;
+
+      button.clicked = true;
+  };
+
+})
+
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
