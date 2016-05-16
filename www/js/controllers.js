@@ -75,12 +75,14 @@ angular.module('starter.controllers', [])
 
     if($scope.searchType == "nome") { $scope.who = param; } else if ($scope.searchType == "empresa") { $scope.company = param; } else { $scope.func = param;}
 
-    console.log("http://pdi.pti.org.br/habitantes/telefones?nome=" + $scope.who + "&funcao=" + $scope.func + "&empresa=" + $scope.company);
-
     $http.get("http://pdi.pti.org.br/habitantes/telefones?nome=" + $scope.who + "&funcao=" + $scope.func + "&empresa=" + $scope.company)
       .success(function(data) {
         $scope.dataTelephones = data.pessoaList;
         console.log(data.pessoaList);
+
+        $scope.who     = "all";
+        $scope.func    = "all";
+        $scope.company = "all";
         
       })
       .error(function(data){
