@@ -1,3 +1,15 @@
+/* 
+
+Just for learn/teach AngularJS
+Readability: 
+  - Every controller has a click and getData function
+  - All controllers are in the same file 
+  - Variables, often, are splited in two or more variables
+
+Test get external data - Example PDI (Plataforma Digital de Informações PTI) - http://pdi.pti.org.br
+
+*/
+
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, $http) {
@@ -22,17 +34,17 @@ angular.module('starter.controllers', [])
 
 
   
-  /* I don't know if I need this. */
+  /* Readability */
   $scope.button         = {};
-    $scope.button.first   = {}; $scope.button.first.clicked  = true;
-    $scope.button.first2  = {}; $scope.button.first2.clicked = true;
+    $scope.button.first   = {}; 
+    $scope.button.first2  = {}; 
     $scope.button.second  = {};
     $scope.button.second2 = {};
-    $scope.button.third   = {};
-    $scope.button.third2  = {};
+    $scope.button.third   = {}; $scope.button.third.clicked  = true;
+    $scope.button.third2  = {}; $scope.button.third2.clicked = true;
 
   /* Handle the clicked button (visual only) */
-  $scope.click = function(button, buttonsClass, paramCall){
+  $scope.click = function(button, buttonsClass, paramCall) {
 
     if(buttonsClass == '1') {
 
@@ -91,14 +103,14 @@ angular.module('starter.controllers', [])
       })
   }
 
-    /* I don't know if I need this. */
+  /* Readability */
   $scope.button         = {};
     $scope.button.first   = {}; $scope.button.first.clicked  = true;
     $scope.button.second  = {};
     $scope.button.third   = {};
 
   /* Handle the clicked button (visual only) */
-  $scope.click = function(button, paramCall){
+  $scope.click = function(button, paramCall) {
 
       console.log(paramCall);
 
@@ -122,7 +134,6 @@ angular.module('starter.controllers', [])
   $scope.restaurant = "all";
   $scope.beginDate = '10/05/2016'
   $scope.endDate = '11/05/2016';
-
 
 
   $scope.dataRestaurants = [];
@@ -154,15 +165,15 @@ angular.module('starter.controllers', [])
       })
   }
 
-  /* I don't know if I need this. */
+  /* Readability */
   $scope.button         = {};
-    $scope.button.first   = {}; $scope.button.first.clicked  = true;
+    $scope.button.first   = {}; 
     $scope.button.second  = {};
     $scope.button.third   = {};
-    $scope.button.fourth  = {};
+    $scope.button.fourth  = {}; $scope.button.fourth.clicked = true;
 
   /* Handle the clicked button (visual only) */
-  $scope.click = function(button, paramCall){
+  $scope.click = function(button, paramCall) {
 
       console.log(paramCall);
 
@@ -175,8 +186,6 @@ angular.module('starter.controllers', [])
 
       button.clicked = true;
   };
-
-
 
 })
 
