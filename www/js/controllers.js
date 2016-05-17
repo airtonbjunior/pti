@@ -117,7 +117,7 @@ angular.module('starter.controllers', [])
 /* -------------- */
 /* Menu Controller*/
 /* -------------- */
-.controller('MenuCrtl', function($scope, $http) {
+.controller('MenuCrtl', function($scope, $http, $filter) {
 
   $scope.restaurant = "all";
   $scope.beginDate = '10/05/2016'
@@ -130,8 +130,8 @@ angular.module('starter.controllers', [])
 
   $scope.getMenu = function (param) {
 
-    console.log($scope.beginDate);
-
+    $scope.beginDate = $filter('date')($scope.beginDate, "dd/MM/yyyy"); /* $filter see: https://docs.angularjs.org/api/ng/filter/date */
+    $scope.endDate   = $filter('date')($scope.endDate  , "dd/MM/yyyy"); /* example see: http://stackoverflow.com/questions/29231840/angular-format-date-ionic */
 
     $http.get("http://pdi.pti.org.br/restaurantes/cardapios.json?dataInicial=" + $scope.beginDate + "&dataFinal=" + $scope.endDate + "&restaurante=" + $scope.restaurant)
       .success(function(data) {
