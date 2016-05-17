@@ -63,7 +63,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       views: {
         'tab-menu': {
           templateUrl: 'templates/tab-menu.html',
-          controller: 'MenuCrtl'
+          controller: 'MenuCtrl'
+        }
+      }
+  })
+  .state('tab.services', {
+      url: '/services',
+      views: {
+        'tab-services': {
+          templateUrl: 'templates/tab-services.html',
+          controller: 'ServicesCtrl'
         }
       }
   })

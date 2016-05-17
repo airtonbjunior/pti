@@ -129,7 +129,7 @@ angular.module('starter.controllers', [])
 /* -------------- */
 /* Menu Controller*/
 /* -------------- */
-.controller('MenuCrtl', function($scope, $http, $filter) {
+.controller('MenuCtrl', function($scope, $http, $filter) {
 
   $scope.restaurant = "all";
   $scope.beginDate = '10/05/2016'
@@ -189,6 +189,13 @@ angular.module('starter.controllers', [])
 
 })
 
+/* ------------------- */
+/* Services Controller */
+/* ------------------- */
+.controller('ServicesCtrl', function($scope) {
+ 
+
+ })
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
