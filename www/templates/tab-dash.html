@@ -1,22 +1,22 @@
 <ion-view view-title="Horário de ônibus">
   <ion-content class="padding" ng-controller="DashCtrl">
     <div class="button-bar">
-      <a class="button" ng-model="button.first" ng-click="click(button.first, '1', 'pti')" ng-class="button.first.clicked?'button-positive':'button-calm'">PTI</a>
-      <a class="button" ng-model="button.second" ng-click="click(button.second,'1', 'barreira')" ng-class="button.second.clicked?'button-positive':'button-calm'">Barreira</a>
-      <a class="button" ng-model="button.third" ng-click="click(button.third, '1', 'all')" ng-class="button.third.clicked?'button-positive':'button-calm'">Todos</a>
+      <a class="button" ng-model="button.first" ng-click="click(button.first, '1', 'pti')" ng-class="button.first.clicked?'button-assertive':'button-outline button-royal'">PTI</a>
+      <a class="button" ng-model="button.second" ng-click="click(button.second,'1', 'barreira')" ng-class="button.second.clicked?'button-assertive':'button-outline button-royal'">Barreira</a>
+      <a class="button" ng-model="button.third" ng-click="click(button.third, '1', 'all')" ng-class="button.third.clicked?'button-assertive':'button-outline button-royal'">Todos</a>
     </div>
     <br />
     <div class="button-bar">
-      <a class="button" ng-model="button.first2" ng-click="click(button.first2, '2', 'normal')" ng-class="button.first2.clicked?'button-positive':'button-calm'">Normal</a>
-      <a class="button" ng-model="button.second2" ng-click="click(button.second2,'2', 'sabado')" ng-class="button.second2.clicked?'button-positive':'button-calm'">Sábado</a>
-      <a class="button" ng-model="button.third2" ng-click="click(button.third2,'2', 'all')" ng-class="button.third2.clicked?'button-positive':'button-calm'">Todos</a>
+      <a class="button" ng-model="button.first2" ng-click="click(button.first2, '2', 'normal')" ng-class="button.first2.clicked?'button-assertive':'button-outline button-royal'">Normal</a>
+      <a class="button" ng-model="button.second2" ng-click="click(button.second2,'2', 'sabado')" ng-class="button.second2.clicked?'button-assertive':'button-outline button-royal'">Sábado</a>
+      <a class="button" ng-model="button.third2" ng-click="click(button.third2,'2', 'all')" ng-class="button.third2.clicked?'button-assertive':'button-outline button-royal'">Todos</a>
     </div>
     <br />
     <button class="button button-block button-positive" ng-click="getBusHours();">Buscar</button>
 
     <ion-list class="busHours">
-      <div class="item item-divider" align="center">Horários (Colocar estilos)</div>
-      <item class="item item-icon-left" ng-repeat="(key, hours) in dataHours track by $index"> <i class="icon ion-ios-clock-outline"></i> {{ hours.local }} {{ hours.onibus }} {{ hours.partida }} {{ hours.tipo }} </item>
+      <div class="item item-divider" align="center" ng-hide="isHidden">Horários</div>
+      <item class="item item-icon-left" align="center" ng-repeat="(key, hours) in dataHours track by $index"> <i class="icon ion-ios-clock-outline royal"></i> {{ hours.partida }} | {{ hours.local }} |<!--{{ hours.onibus }}-->  {{ hours.tipo }} </item>
     </ion-list>
   
   </ion-content>

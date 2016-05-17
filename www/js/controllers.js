@@ -13,6 +13,21 @@ Test get external data - Example PDI (Plataforma Digital de Informações PTI) -
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, $http) {
+  
+  $scope.isHidden      = true; // default hidden
+  $scope.isHiddenError = true;
+
+  $scope.showHidden = function (error) {
+    if (error) { 
+      $scope.isHiddenError = false; 
+      $scope.isHidden = true; 
+    } else { 
+      $scope.isHidden = false;
+      $scope.isHiddenError = true;  
+    }
+  }
+
+
   $scope.dataHours = {};
   $scope.buttonWhere = "all";
   $scope.buttonWhen  = "all";
@@ -22,10 +37,13 @@ angular.module('starter.controllers', [])
     $http.get("http://pdi.pti.org.br/onibus/horarios?local=" + $scope.buttonWhere + "&tipo=" + $scope.buttonWhen)
       .success(function(data) {
         $scope.dataHours = data.baseOnibus.horarios;
-        
+        $scope.showHidden(false);
+
       })
       .error(function(data){
         alert("Erro na busca dos dados. Por favor, tente novamente!");
+        $scope.showHidden(true);
+
       })
   }
 
@@ -75,7 +93,6 @@ angular.module('starter.controllers', [])
   $scope.who     = "all";
   $scope.func    = "all";
   $scope.company = "all";
-
 
   $scope.getTelephones = function (param) {
 
