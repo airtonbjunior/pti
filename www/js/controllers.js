@@ -1,8 +1,8 @@
 /* 
 
-Just for learn/teach AngularJS
+## Just for learn/teach AngularJS ##
 Readability: 
-  - Every controller has a click and getData function
+  - Every controller has a click and getData function (almost the same - change the url and the parameters)
   - All controllers are in the same file 
   - Variables, often, are splited in two or more variables
 
@@ -13,12 +13,9 @@ Test get external data - Example PDI (Plataforma Digital de Informações PTI) -
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, $http) {
-
-  
   $scope.dataHours = {};
   $scope.buttonWhere = "all";
   $scope.buttonWhen  = "all";
-
 
   $scope.getBusHours = function () {
     
@@ -31,7 +28,6 @@ angular.module('starter.controllers', [])
         alert("Erro na busca dos dados. Por favor, tente novamente!");
       })
   }
-
 
   
   /* Readability */
@@ -50,9 +46,9 @@ angular.module('starter.controllers', [])
 
       $scope.buttonWhere = button;
 
-      $scope.button.first.clicked   = false;
-      $scope.button.second.clicked  = false;
-      $scope.button.third.clicked   = false;  
+      $scope.button.first.clicked  = false;
+      $scope.button.second.clicked = false;
+      $scope.button.third.clicked  = false;  
 
       $scope.buttonWhere = paramCall;
     }
@@ -83,15 +79,11 @@ angular.module('starter.controllers', [])
 
   $scope.getTelephones = function (param) {
 
-    console.log(param);
-    console.log($scope.searchType);
-
     if($scope.searchType == "nome") { $scope.who = param; } else if ($scope.searchType == "empresa") { $scope.company = param; } else { $scope.func = param;}
 
     $http.get("http://pdi.pti.org.br/habitantes/telefones?nome=" + $scope.who + "&funcao=" + $scope.func + "&empresa=" + $scope.company)
       .success(function(data) {
         $scope.dataTelephones = data.pessoaList;
-        console.log(data.pessoaList);
 
         $scope.who     = "all";
         $scope.func    = "all";
@@ -112,8 +104,6 @@ angular.module('starter.controllers', [])
   /* Handle the clicked button (visual only) */
   $scope.click = function(button, paramCall) {
 
-      console.log(paramCall);
-
       $scope.button.first.clicked   = false; 
       $scope.button.second.clicked  = false;
       $scope.button.third.clicked   = false;  
@@ -132,9 +122,8 @@ angular.module('starter.controllers', [])
 .controller('MenuCtrl', function($scope, $http, $filter) {
 
   $scope.restaurant = "all";
-  $scope.beginDate = '10/05/2016'
+  $scope.beginDate = '10/05/2016';
   $scope.endDate = '11/05/2016';
-
 
   $scope.dataRestaurants = [];
   $scope.resultRestaurants;
@@ -147,8 +136,6 @@ angular.module('starter.controllers', [])
     $http.get("http://pdi.pti.org.br/restaurantes/cardapios.json?dataInicial=" + $scope.beginDate + "&dataFinal=" + $scope.endDate + "&restaurante=" + $scope.restaurant)
       .success(function(data) {
         $scope.dataMenu = data;
-
-        
 
         if ($scope.restaurant == 'all') {
           for (i=0; i<data.length; i++) {
@@ -192,8 +179,55 @@ angular.module('starter.controllers', [])
 /* ------------------- */
 /* Services Controller */
 /* ------------------- */
-.controller('ServicesCtrl', function($scope) {
- 
+.controller('ServicesCtrl', function($scope, $http) {
+   
+  $scope.services = [];
+  $scope.serviceParam = "nome";
+  
+  $scope.nameService  = "all";
+  $scope.category     = "all";
+  $scope.localization = "all";
+
+
+   $scope.getServices = function (param) {
+
+    if ($scope.serviceParam == "nome") { $scope.nameService = param; } else if ($scope.serviceParam == "categoria") { $scope.category = param; } else { $scope.localization = param } 
+    
+    $http.get("http://pdi.pti.org.br/entidades/servicos?categoria=" + $scope.category + "&busca=" + $scope.nameService + "&localizacao=" + $scope.localization)
+      .success(function(data) {
+
+        console.log("http://pdi.pti.org.br/entidades/servicos?categoria=" + $scope.category + "&busca=" + $scope.nameService + "&localizacao=" + $scope.localization);
+
+        $scope.services = data.empresaList;
+
+        console.log($scope.services);
+        $scope.nameService  = "all";
+        $scope.category     = "all";
+        $scope.localization = "all";
+        
+      })
+      .error(function(data){
+        alert("Erro na busca dos dados. Por favor, tente novamente!");
+      })
+  }
+
+    /* Readability */
+  $scope.button         = {};
+    $scope.button.first   = {}; $scope.button.first.clicked  = true;
+    $scope.button.second  = {};
+    $scope.button.third   = {};
+
+      /* Handle the clicked button (visual only) */
+  $scope.click = function(button, paramCall) {
+
+      $scope.button.first.clicked   = false; 
+      $scope.button.second.clicked  = false;
+      $scope.button.third.clicked   = false;
+
+      $scope.serviceParam = paramCall;
+
+      button.clicked = true;
+  };
 
  })
 

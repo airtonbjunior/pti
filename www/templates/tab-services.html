@@ -9,17 +9,17 @@
     </div>
 
     <div class="button-bar">
-      <a class="button" ng-model="button.first" ng-click="click(button.first, 'nome')" ng-class="button.first.clicked?'button-positive':'button-calm'">Nome</a>
-      <a class="button" ng-model="button.second" ng-click="click(button.second,'empresa')" ng-class="button.second.clicked?'button-positive':'button-calm'">Setor</a>
-      <a class="button" ng-model="button.third" ng-click="click(button.third, 'funcao')" ng-class="button.third.clicked?'button-positive':'button-calm'">Função</a>
+      <a class="button" ng-model="button.first" ng-click="click(button.first, 'nome')" ng-class="button.first.clicked?'button-positive':'button-calm'">Nome/Descrição</a>
+      <a class="button" ng-model="button.second" ng-click="click(button.second,'categoria')" ng-class="button.second.clicked?'button-positive':'button-calm'">Categoria</a>
+      <a class="button" ng-model="button.third" ng-click="click(button.third, 'localizacao')" ng-class="button.third.clicked?'button-positive':'button-calm'">Localização</a>
     </div>
     <br />
 
-    <button class="button button-block button-positive" ng-click="getTelephones(searchParam);">Buscar</button>
+    <button class="button button-block button-positive" ng-click="getServices(searchParam);">Buscar</button>
 
-    <ion-list class="busHours">
-      <div class="item item-divider" align="center">Telefones (Colocar estilos)</div>
-      <item class="item item-icon-left" ng-repeat="(key, person) in dataTelephones track by $index"> <i class="icon ion-ios-telephone-outline"></i> {{ person.empresa.nome }} {{ person.funcao.nome }} {{ person.nome }} {{ person.telefone }} </item>
+    <ion-list class="services">
+      <div class="item item-divider" align="center">Serviços (Colocar estilos)</div>
+      <item class="item item-icon-left" ng-repeat="(key, service) in services track by $index"> <i class="icon ion-ios-telephone-outline"></i> {{ service.nome }} {{ service.telefone }} {{ service.email }} </item>
     </ion-list>
   
   </ion-content>
