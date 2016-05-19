@@ -19,7 +19,10 @@
 
     <ion-list class="busHours">
       <div class="item item-divider" align="center">Telefones (Colocar estilos)</div>
-      <item class="item item-icon-left" ng-repeat="(key, person) in dataTelephones track by $index"> <i class="icon ion-ios-telephone-outline"></i> [{{ person.telefone }}] {{ person.nome | uppercase}} - {{ person.empresa.nome }} - {{ person.funcao.nome }} </item>
+      <item class="item item-icon-left" ng-repeat="(key, person) in dataTelephones track by $index"> <i class="icon ion-ios-telephone-outline"></i> 
+        <h2> [{{ person.telefone }}] {{ person.nome | uppercase}} </h2> 
+        <p> {{ person.empresa.nome }} - {{ person.funcao.nome }} </p>
+      </item>
     </ion-list>
   
   </ion-content>
