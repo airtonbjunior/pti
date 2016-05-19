@@ -117,7 +117,11 @@ angular.module('starter.controllers', [])
         showDelay: 0,
       });
 
+    if (param == undefined) { param = "all"; } /* When there's no parameter, search all */
+
     if($scope.searchType == "nome") { $scope.who = param; } else if ($scope.searchType == "empresa") { $scope.company = param; } else { $scope.func = param;}
+
+    console.log("http://pdi.pti.org.br/habitantes/telefones?nome=" + $scope.who + "&funcao=" + $scope.func + "&empresa=" + $scope.company);
 
     $http.get("http://pdi.pti.org.br/habitantes/telefones?nome=" + $scope.who + "&funcao=" + $scope.func + "&empresa=" + $scope.company)
       .success(function(data) {
