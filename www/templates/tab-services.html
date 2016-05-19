@@ -19,7 +19,7 @@
 
     <ion-list class="services">
       <div class="item item-divider" align="center">Serviços (Colocar estilos)</div>
-      <item class="item item-icon-left" ng-repeat="(key, service) in services track by $index"> <i class="icon ion-ios-telephone-outline"></i> {{ service.nome }} {{ service.telefone }} {{ service.email }} </item>
+      <item class="item item-icon-left" ng-repeat="(key, service) in services track by $index"> <i class="icon ion-ios-telephone-outline"></i> [{{ service.telefone }}] {{ service.nome }} - {{ service.email }} </item>
     </ion-list>
   
   </ion-content>
