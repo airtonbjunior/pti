@@ -12,8 +12,8 @@ Test get external data - Example PDI (Plataforma Digital de Informações PTI) -
 
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope, $http) {
-  
+.controller('DashCtrl', function($scope, $http, $ionicLoading) {
+
   $scope.isHidden      = true; // default hidden
   $scope.isHiddenError = true;
 
@@ -34,15 +34,26 @@ angular.module('starter.controllers', [])
 
   $scope.getBusHours = function () {
     
+    // Setup the loader (http://codepen.io/chabelly/pen/xGdqbJ)
+    /* Readability - the method is copy/pasted in all controllers - Split in the final project */
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0,
+    });
+  
     $http.get("http://pdi.pti.org.br/onibus/horarios?local=" + $scope.buttonWhere + "&tipo=" + $scope.buttonWhen)
       .success(function(data) {
         $scope.dataHours = data.baseOnibus.horarios;
         $scope.showHidden(false);
-
+        $ionicLoading.hide();
       })
       .error(function(data){
         alert("Erro na busca dos dados. Por favor, tente novamente!");
         $scope.showHidden(true);
+        $ionicLoading.hide();
 
       })
   }
@@ -86,7 +97,7 @@ angular.module('starter.controllers', [])
 /* --------------------- */
 /* Telephones Controller */
 /* --------------------- */
-.controller('TelephonesCtrl', function($scope, $http) {
+.controller('TelephonesCtrl', function($scope, $http, $ionicLoading) {
 
   $scope.dataTelephones = {};
   $scope.searchType = "nome";
@@ -95,6 +106,16 @@ angular.module('starter.controllers', [])
   $scope.company = "all";
 
   $scope.getTelephones = function (param) {
+
+      // Setup the loader (http://codepen.io/chabelly/pen/xGdqbJ)
+      /* Readability - the method is copy/pasted in all controllers - Split in the final project */
+      $ionicLoading.show({
+        content: 'Loading',
+        animation: 'fade-in',
+        showBackdrop: true,
+        maxWidth: 200,
+        showDelay: 0,
+      });
 
     if($scope.searchType == "nome") { $scope.who = param; } else if ($scope.searchType == "empresa") { $scope.company = param; } else { $scope.func = param;}
 
@@ -105,10 +126,11 @@ angular.module('starter.controllers', [])
         $scope.who     = "all";
         $scope.func    = "all";
         $scope.company = "all";
-        
+        $ionicLoading.hide();
       })
       .error(function(data){
         alert("Erro na busca dos dados. Por favor, tente novamente!");
+        $ionicLoading.hide();
       })
   }
 
@@ -136,7 +158,7 @@ angular.module('starter.controllers', [])
 /* -------------- */
 /* Menu Controller*/
 /* -------------- */
-.controller('MenuCtrl', function($scope, $http, $filter) {
+.controller('MenuCtrl', function($scope, $http, $filter, $ionicLoading) {
 
   $scope.restaurant = "all";
   $scope.beginDate = '10/05/2016';
@@ -146,6 +168,16 @@ angular.module('starter.controllers', [])
   $scope.resultRestaurants;
 
   $scope.getMenu = function (param) {
+
+    // Setup the loader (http://codepen.io/chabelly/pen/xGdqbJ)
+    /* Readability - the method is copy/pasted in all controllers - Split in the final project */
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0,
+    });
 
     $scope.beginDate = $filter('date')($scope.beginDate, "dd/MM/yyyy"); /* $filter see: https://docs.angularjs.org/api/ng/filter/date */
     $scope.endDate   = $filter('date')($scope.endDate  , "dd/MM/yyyy"); /* example see: http://stackoverflow.com/questions/29231840/angular-format-date-ionic */
@@ -162,10 +194,11 @@ angular.module('starter.controllers', [])
         else {
           $scope.dataRestaurants[0] = data[0];
         }
-
+        $ionicLoading.hide();
       })
       .error(function(data){
         alert("Erro na busca dos dados. Por favor, tente novamente!");
+        $ionicLoading.hide();
       })
   }
 
@@ -196,7 +229,7 @@ angular.module('starter.controllers', [])
 /* ------------------- */
 /* Services Controller */
 /* ------------------- */
-.controller('ServicesCtrl', function($scope, $http) {
+.controller('ServicesCtrl', function($scope, $http, $ionicLoading) {
    
   $scope.services = [];
   $scope.serviceParam = "nome";
@@ -207,6 +240,16 @@ angular.module('starter.controllers', [])
 
 
    $scope.getServices = function (param) {
+
+    // Setup the loader (http://codepen.io/chabelly/pen/xGdqbJ)
+    /* Readability - the method is copy/pasted in all controllers - Split in the final project */
+    $ionicLoading.show({
+      content: 'Loading',
+      animation: 'fade-in',
+      showBackdrop: true,
+      maxWidth: 200,
+      showDelay: 0,
+    });
 
     if ($scope.serviceParam == "nome") { $scope.nameService = param; } else if ($scope.serviceParam == "categoria") { $scope.category = param; } else { $scope.localization = param } 
     
@@ -221,10 +264,12 @@ angular.module('starter.controllers', [])
         $scope.nameService  = "all";
         $scope.category     = "all";
         $scope.localization = "all";
+        $ionicLoading.hide();
         
       })
       .error(function(data){
         alert("Erro na busca dos dados. Por favor, tente novamente!");
+        $ionicLoading.hide();
       })
   }
 
